@@ -1,0 +1,60 @@
+import os
+
+def img_filter(paths):
+    counter = 0
+    for i in paths:
+        temp = Image.open(i)
+        #temp.show()
+        if(counter == 0):
+            new_temp = temp.filter(ImageFilter.CONTOUR)
+        if (counter == 1):
+            new_temp = temp.filter(ImageFilter.DETAIL)
+        if (counter == 2):
+            new_temp = temp.filter(ImageFilter.SHARPEN)
+        if (counter == 3):
+            new_temp = temp.filter(ImageFilter.EMBOSS)
+        if (counter == 4):
+            new_temp = temp.filter(ImageFilter.SMOOTH)
+        if (counter > 4):
+            new_temp = temp.filter(ImageFilter.CONTOUR)
+        #new_temp.show()
+        name = "saves/"+i
+        new_temp.save(name)
+        counter += 1
+#9.1
+print("9.1")
+img = ['png', 'jpg']
+#img.append(['jpeg', 'ai', 'gif'])
+current_dir = os.listdir(os.getcwd())
+os.mkdir("saves")
+def list_of_imgs (list_files, img):
+    img_list = []
+    for i in list_files:
+        temp_name = list(i.split('.'))
+        temp_name.append('')
+        if temp_name[1] in img:
+            img_list.append(i)
+    return img_list
+
+img_list = list_of_imgs(current_dir, img)
+print("Список файлов: ", img_list)
+img_filter(img_list)
+print("Результаты сохранятся в /saves")
+
+#9.2
+#img - список разрешений, которые будут добавлятьс в список функции list_of_imgs
+
+#9.3
+import pandas as pd
+import numpy as np
+print("9.3")
+def products (path):
+    prod_df = pd.read_csv(path)
+    summary = prod_df['Цена'].sum
+    print("Нужно купить!!")
+    for i in prod_df.index:
+        print(prod_df['Продукт'], '-', prod_df['Количество'], 'штуки за', prod_df['Цена'], 'руб.')
+    print("Итого: ", summary, "рублей")
+
+file_path = "test.txt"
+products(file_path)
