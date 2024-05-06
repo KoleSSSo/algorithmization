@@ -1,0 +1,74 @@
+from PIL import Image, ImageFilter
+#7.1
+def img_info(img):
+    print("размер:", img.size, "px")
+    print("формат:", img.format)
+    print("цветовая модель:", img.mode)
+    img.show()
+
+print("7.1")
+hamster = "68_8cQFpQrY.jpg"
+with Image.open(hamster) as img:
+    img.load()
+img_info(img)
+print()
+
+#7.2
+def img_resize(img, h, w):
+    img.thumbnail((h/3, w/3))
+    img.show()
+
+def img_mirrow(img):
+    temp = img.transpose(Image.FLIP_LEFT_RIGHT)
+    temp.show()
+    temp = img.transpose(Image.FLIP_TOP_BOTTOM)
+    temp.show()
+
+print("7.2")
+print("Результаты откроются в фоторедакторе")
+img_size = list(img.size)
+img_resize(img, img_size[0], img_size[1])
+img_mirrow(img)
+print()
+
+#7.3
+def img_filter(paths):
+    counter = 0
+    for i in paths:
+        temp = Image.open(i)
+        #temp.show()
+        if(counter == 0):
+            new_temp = temp.filter(ImageFilter.CONTOUR)
+        if (counter == 1):
+            new_temp = temp.filter(ImageFilter.DETAIL)
+        if (counter == 2):
+            new_temp = temp.filter(ImageFilter.SHARPEN)
+        if (counter == 3):
+            new_temp = temp.filter(ImageFilter.EMBOSS)
+        if (counter == 4):
+            new_temp = temp.filter(ImageFilter.SMOOTH)
+        if (counter > 4):
+            new_temp = temp.filter(ImageFilter.CONTOUR)
+        #new_temp.show()
+        name = "saves/"+i
+        new_temp.save(name)
+        counter += 1
+
+img_paths = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]
+img_filter(img_paths)
+print("Результаты откроются в фоторедакторе")
+print("7.3")
+print()
+
+#7.4
+def Watermark(input_path, output_path, watermark_path, position):
+    base_img = Image.open(input_path)
+    watermark = Image.open(watermark_path)
+    base_img.paste(watermark, position)
+    base_img.save(output_path)
+    base_img.show()
+
+print("7.4")
+Watermark("1.jpg", "watermark.jpg", "кит.png", (0, 0))
+print("Результаты откроются в фоторедакторе")
+print()
