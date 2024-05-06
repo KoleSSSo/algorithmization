@@ -1,0 +1,85 @@
+6.1
+print("6.1")
+city_dict = {
+    "Россия" : "Москва",
+    "Украина" : "Киев",
+    "Беларусь" : "Минск",
+    "Испания": "Мадрид",
+    "Германия": "Берлин",
+    "Великобритания": "Лондон",
+}
+land = input("Введите страну: ")
+def city (city_dict, land):
+    print("Страны и их столицы: ", city_dict)1
+    if(land in city_dict):
+        print("Столица введённой страны: ", city_dict[land])
+    else:
+        print("Вашей страны нет в словаре:(")
+    print("Отсортированный список стран со столицами: ", sorted(city_dict.items(), key=lambda item: item[0]))
+
+city(city_dict, land)
+print()
+
+#6.2
+print("6.2")
+erudite_dict = {1 : ['А', 'В', 'Е', 'И', 'Н', 'О', 'Р', 'С', 'Т'],
+               2 : ['Д', 'К', 'Л', 'М', 'П', 'У'],
+               3 : ['Б', 'Г', 'Ё', 'Ь', 'Я'],
+               4 : ['Й', 'Ы'],
+               5 : ['Ж', 'З', 'Х', 'Ц', 'Ч'],
+               8 : ['Ш', 'Э', 'Ю'],
+               10 : ['Ф', 'Щ', 'Ъ']}
+
+word = input("Введите слово: ")
+def erudite (word, erudite_dict):
+    point_sum = 0
+    word = word.upper()
+    for i in word:
+        if i in erudite_dict[1]:
+            point_sum += 1
+        if i in erudite_dict[2]:
+            point_sum += 2
+        if i in erudite_dict[3]:
+            point_sum += 3
+        if i in erudite_dict[4]:
+            point_sum += 4
+        if i in erudite_dict[5]:
+            point_sum += 5
+        if i in erudite_dict[8]:
+            point_sum += 8
+        if i in erudite_dict[10]:
+            point_sum += 10
+    print("Ваше слово стоит", point_sum, "баллов")
+erudite(word, erudite_dict)
+print()
+
+#6.3
+print("6.3")
+student_list = {'Печорин', 'Раскольников', 'Ахматова', 'Власов', 'Плюшкин', 'Красов', 'Айвазян', 'Ян'}
+students_and_languages = {'Печорин' : ['русский', 'французский', 'английский'],
+                          'Раскольников' : ['русский', 'французский'],
+                          'Ахматова' : ['русский', 'французский', 'английский', 'немецкий'],
+                          'Власов' : ['русский'],
+                          'Плюшкин' : ['русский', 'французский', 'английский', 'немецкий', 'итальянский'],
+                          'Красов' : ['русский', 'немецкий'],
+                          'Айвазян' : ['русский', 'французский', 'английский', 'польский'],
+                          'Ян' : ['русский', 'китайский']}
+def unique_languages (students, languages):
+    unique_languages = set()
+    for i in students:
+        for j in languages[i]:
+            if j not in unique_languages :
+                unique_languages.add(j)
+    return unique_languages
+def chineese (students, languages):
+    sum_languages = 0
+    for i in students:
+        for j in languages[i]:
+            if j == 'китайский':
+                sum_languages += 1
+    print(sum_languages, "студентов знают китайский")
+
+languages = unique_languages(student_list, students_and_languages)
+print("Студенты знают", len(languages), "различных языков")
+print("Отсортированное множество языков: ", sorted(languages))
+chineese(student_list, students_and_languages)
