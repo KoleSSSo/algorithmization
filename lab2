@@ -1,0 +1,49 @@
+#2.1
+print("2.1")
+password = input("Введите пароль: ")
+rep_password = input("Повторите пароль: ")
+if(password!=rep_password):
+    print("Пароли не совпадают, блин!")
+else:
+    print("Хороший пароль!\nНаверное...")
+
+#2.2
+print("2.2")
+place = 1 + int(input("Какое у вас место в вагоне?\n"))
+if(place%6==0 or place%6==2):
+    print("Повезло! Нижнее в купе.")
+elif(place%6==1 or place%6==3):
+    print("Примелемо, верхнее в купе!")
+elif(place%6==4):
+    print("Увы, боковое и снизу")
+elif(place%6==5):
+    print("Верхнее сбоку, УВЫ:(")
+
+#2.3
+print("2.3")
+year = int(input("Какой вас интересует год?\n"))
+flag = 0
+if(year % 4 == 0):
+    if (year % 400 == 0):
+        flag = 1
+    if (year % 100 != 0):
+        flag = 1
+if (flag == 1):
+    print("Год", year, "- високосный")
+else:
+    print("Это год не високосный")
+
+#2.4
+print("2.4")
+colors = list(input("Введите два цвета через пробел: ").split())
+up_colors = []
+for i in colors:
+    up_colors.append(i.upper())
+if (up_colors[0] == "КРАСНЫЙ" and up_colors[1] == "СИНИЙ" or up_colors[0] == "СИНИЙ" and up_colors[1] == "КРАСНЫЙ"):
+    print("При смешивании получмится фиолетовый<3")
+elif (up_colors[0] == "КРАСНЫЙ" and up_colors[1] == "ЖЁЛТЫЙ" or up_colors[0] == "ЖЁЛТЫЙ" and up_colors[1] == "КРАСНЫЙ"):
+    print("При смешивании получмится оранжевый<3")
+elif (up_colors[0] == "СИНИЙ" and up_colors[1] == "ЖЁЛТЫЙ" or up_colors[0] == "ЖЁЛТЫЙ" and up_colors[1] == "СИНИЙ"):
+    print("При смешивании получмится зелёный<3")
+else:
+    print("При смешивании получиится что попало:(")
