@@ -1,0 +1,61 @@
+import random
+#3.1
+print("3.1")
+N = int(input("Введите колиество слов: "))
+words = ""
+for i in range(0, N):
+    word = input()
+    words+=word
+print(words)
+
+#3.2
+print("3.2")
+word = ""
+words = ""
+while(word!="stop"):
+    word = input()
+    if(word!="stop"):
+        words+=word
+print(words)
+
+#3.3
+print("3.3")
+word = ""
+while(word!="stop"):
+    word = input()
+    if(word!="stop"):
+        if("ф" in word):
+            print("Ого! Это редкое слово!")
+        else:
+            print("Эх, это не очень редкое слово...")
+
+#3.4
+print("3.4")
+falsch = 0
+answer_count = 0
+while (falsch < 4):
+    first_number = random.randint(0,10)
+    second_number = random.randint(0,10)
+    sign = random.randint(0,4)
+    if(sign == 0):
+        print(first_number, "+", second_number, "= ?")
+        rigtig = int(first_number + second_number)
+    if (sign == 1):
+        print(first_number, "-", second_number, "= ?")
+        rigtig = int(first_number - second_number)
+    if (sign == 2):
+        print(first_number, "*", second_number, "= ?")
+        rigtig = int(first_number * second_number)
+    if (sign == 3):
+        print(first_number, "/", second_number, "= ?")
+        rigtig = int(first_number // second_number)
+    answer = int(input("Ваш ответ: "))
+    if (rigtig == answer):
+        print("Вы абсолютно правы!")
+        answer_count+=1
+    else:
+        falsch+=1
+        print("Вы ошиблись. Правильный ответ -", rigtig)
+    if (falsch == 3):
+        print("The End. Привльных ответов - ", answer_count)
+        break
