@@ -1,0 +1,65 @@
+#12.1
+print("12.1")
+class IceCreamStand (Restaurant):
+    def __init__ (self, restaurant_name, cuisine_type, rating = -1, flavors = [], address = "", date = ""):
+        self.restaurant_name = restaurant_name
+        self.cuisine_type = cuisine_type
+        self.rating = rating
+        self.flavors = flavors
+        self.address = address
+        self.date = date
+    def print_flavors(self):
+        if (self.flavors == []):
+            print("Всё закончилось!")
+        else:
+            print("В магазине", self.restaurant_name, "есть данные вкусы:")
+            for i in self.flavors:
+                print(i)
+
+    def add_flavor(self, new_flavor):
+        self.flavors.append(new_flavor)
+    def undo_flavor(self, delete_flavor):
+        if delete_flavor in self.flavors:
+            self.flavors.remove(delete_flavor)
+        else:
+            print("Не удалось удалить вкус,", delete_flavor, "Возможно, его нет в списке вкусов.")
+
+    def check_flavor (self, check):
+        if check in self.flavors:
+            print ("Вкус", check, "есть в наличии!")
+        else:
+            print("Вкус", check, "не в наличии!")
+
+    def stick (self):
+        if "Эскимо на палочке" in self.flavors:
+            print("Палочка для эскимо сделана из дерева")
+        else:
+            print("В магазине", self.restaurant_name, "эскимо на палочке нет.")
+
+    def soft (self):
+        if "Мягкое" in self.flavors:
+            print("Мягкое мороженное тянется")
+        else:
+            print("В магазине", self.restaurant_name, "мягкого мороженного нет.")
+
+
+iscreamshop = IceCreamStand("Страччателла", "Испанская кухня", flavors=["Фруктовый", "Ягодный", "Шоколадный", "Ванильный", "Эскимо на палочке", "Мягкое"])
+iscreamshop.print_flavors()
+print()
+
+#12.1
+print("12.2")
+iscreamshop.date = "Пн-Сб: 10:30-19:00, без обеда"
+iscreamshop.address = "Красноармейская 12А"
+print("Ресторан", iscreamshop.restaurant_name, "по адресу:", iscreamshop.address, "работает по расписанию", iscreamshop.date)
+print()
+iscreamshop.add_flavor("Ананасовый")
+iscreamshop.check_flavor("Клубничный")
+iscreamshop.undo_flavor("Клубничный")
+iscreamshop.undo_flavor("Фруктовый")
+iscreamshop.print_flavors()
+print()
+print("Метод для опознания материала палочки для мороженного на палочке:")
+iscreamshop.stick()
+print("Метод для опознания типа мягкого мороженного:")
+iscreamshop.soft()
